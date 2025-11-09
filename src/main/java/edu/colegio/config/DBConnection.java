@@ -1,4 +1,3 @@
-
 package edu.colegio.config;
 
 import java.io.InputStream;
@@ -7,6 +6,7 @@ import java.sql.DriverManager;
 import java.util.Properties;
 
 public class DBConnection {
+
     private static String url;
     private static String user;
     private static String pass;
@@ -14,7 +14,9 @@ public class DBConnection {
     static {
         try (InputStream in = DBConnection.class.getClassLoader().getResourceAsStream("db.properties")) {
             Properties props = new Properties();
-            if (in == null) throw new RuntimeException("No se encontró db.properties en resources");
+            if (in == null) {
+                throw new RuntimeException("No se encontró db.properties en resources");
+            }
             props.load(in);
             url = props.getProperty("db.url");
             user = props.getProperty("db.user");
